@@ -8,7 +8,7 @@
 echo -e 'Now we will create a folder under /var/run for current user - we need to do it every time after system reboot'
 sudo mkdir /var/run/ironfish/
 echo -e 'Now we will change the ownership for /var/run/ironfish'
-sudo chown $USER:$USER /var/run/ironfish
+sudo chown $USER:$USER /var/run/ironfish/
 
 filename="$(basename $0)"
 
@@ -38,14 +38,14 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 			echo -e '\033[1;32m'"Transaction:"'\033[0m'
 			ironfish deposit --confirm | tee /tmp/deposit-last.log
 			echo -e '\033[0;31m'"-------------------------------------------------------------"'\033[0m'
-			sleep 15
+			sleep 40
 			if [ ! -z "$(egrep -i "Insufficient" /tmp/deposit-last.log)" ]; then
-				sleep 360
+				sleep 120
 				break
 			fi
 		done
 	fi
 else
-	sleep 10
+	sleep 60
 fi
 done
