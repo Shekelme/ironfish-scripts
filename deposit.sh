@@ -38,7 +38,7 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 			echo -e '\033[1;32m'"Transaction:"'\033[0m'
 			ironfish deposit --confirm | tee /tmp/deposit-last.log
 			echo -e '\033[0;31m'"-------------------------------------------------------------"'\033[0m'
-			sleep 40
+			sleep 90
 			if [ ! -z "$(egrep -i "Insufficient" /tmp/deposit-last.log)" ]; then
 				sleep 120
 				break
@@ -46,6 +46,6 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 		done
 	fi
 else
-	sleep 60
+	sleep 90
 fi
 done
