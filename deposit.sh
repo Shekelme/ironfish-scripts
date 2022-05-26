@@ -57,7 +57,7 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 						INSUFFICIENT_COUNT=0
 						break
 					fi
-				sleep 600
+				sleep 120
 			fi
 			if [ ! -z "$(egrep -i "An error occurred while sending the transaction" /tmp/deposit-last.log)" ]; then
 				# It means that network is down, script will sleep for 30 minutes until next try
