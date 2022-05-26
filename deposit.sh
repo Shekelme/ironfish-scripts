@@ -48,6 +48,7 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 			ironfish deposit --confirm | tee /tmp/deposit-last.log
 			echo -e '\033[0;31m'"-------------------------------------------------------------"'\033[0m'
 			sleep 60
+			INSUFFICIENT_COUNT=0
 			if [ ! -z "$(egrep -i "Insufficient" /tmp/deposit-last.log)" ]; then
 				((INSUFFICIENT_COUNT++))
 				echo "Insufficient funds error count is ${INSUFFICIENT_COUNT}"
