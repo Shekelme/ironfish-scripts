@@ -47,7 +47,7 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 			echo -e '\033[1;32m'"Transaction:"'\033[0m'
 			ironfish deposit --confirm | tee /tmp/deposit-last.log
 			echo -e '\033[0;31m'"-------------------------------------------------------------"'\033[0m'
-			sleep 150
+			sleep 200
 			INSUFFICIENT_COUNT=0
 			if [ ! -z "$(egrep -i "Insufficient" /tmp/deposit-last.log)" ]; then
 				((INSUFFICIENT_COUNT++))
@@ -58,7 +58,7 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 						INSUFFICIENT_COUNT=0
 						break
 					fi
-				sleep 150
+				sleep 200
 			fi
 			if [ ! -z "$(egrep -i "An error occurred while sending the transaction" /tmp/deposit-last.log)" ]; then
 				# It means that network is down, script will sleep for 30 minutes until next try
@@ -68,6 +68,6 @@ if (( $(echo "${BALANCE} >= 0.10000001" | bc -l) )); then
 		done
 	fi
 else
-	sleep 90
+	sleep 200
 fi
 done
